@@ -2,18 +2,220 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_margin="10dp"
+    android:id="@+id/main"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/tips_calculator"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/introducao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill the fields below to calculate your account."
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        />
+
+    <TextView
+        android:id="@+id/labelAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How much is the account?"
+        android:textSize="15sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introducao"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelAccount">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:hint="Ex.: 1000 (€)"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/labelNumberOfPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number of people"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/numberOfPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelNumberOfPeople">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/numberOfPeopleInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:hint="Ex.: 100"
+            android:inputType="number"
+            android:maxLength="2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/labelTip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tip percentage"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/numberOfPeople"
+        />
+
+    <RadioGroup
+        android:id="@+id/tipPercentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/labelTip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <RadioButton
+            android:id="@+id/tipPercentage0"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 %"
+            android:layout_marginEnd="10dp"
+             />
+        <RadioButton
+            android:id="@+id/tipPercentage10"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 %"
+            android:layout_marginEnd="10dp"
+
+            />
+        <RadioButton
+            android:id="@+id/tipPercentage20"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 %"
+            android:layout_marginEnd="10dp"
+
+            />
+        <RadioButton
+            android:id="@+id/tipPercentage25"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25 %"
+            android:layout_marginEnd="10dp"
+
+            />
+        <RadioButton
+            android:id="@+id/tipPercentage30"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30 %"
+            />
+
+    </RadioGroup>
+
+    <!--
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelTip">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tipInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:hint="Ex.: 10 (%)"
+            android:inputType="numberDecimal"
+            android:maxLength="2" />
+
+    </com.google.android.material.textfield.TextInputLayout> -->
+
+
+
+    <Button
+        android:id="@+id/limpar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/reset"
+        android:background="@drawable/reset"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+
+        />
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate"
+        android:background="@drawable/reset"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
