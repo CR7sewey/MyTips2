@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
        // val calculateButton = findViewById<Button>(R.id.calculateButton)
         // val resetButton = findViewById<Button>(R.id.limpar)
 
-        var tip: String = "0"
+        var tip: String = ""
         var total: Float = 0.0f
 
         binding.tipPercentage0.setOnCheckedChangeListener {_, isChecked ->
@@ -70,17 +70,24 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.calculateButton.setOnClickListener {
-
-                total = calculateValues(binding.accountInput, binding.numberOfPeopleInput, tip).toFloat()
-
+            total = calculateValues(binding.accountInput, binding.numberOfPeopleInput, tip).toFloat()
             println(total)
+            if (total == 0.0f) {
+                binding.result.text = ""
+            }
+            else {
+                binding.result.text = "€${total}"
+            }
 
         }
 
         binding.limpar.setOnClickListener {
-            binding.accountInput.text?.clear()
+            binding.accountInput.setText("")
             binding.numberOfPeopleInput.text?.clear()
             binding.tipPercentage.clearCheck()
+            tip = ""
+            total = 0.0f
+            binding.result.text = ""
         }
 
     }

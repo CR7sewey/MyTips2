@@ -67,7 +67,7 @@
             android:textStyle="bold"
             android:hint="Ex.: 1000 (€)"
             android:inputType="numberDecimal"
-            android:maxLength="6" />
+            android:maxLength="4" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +194,34 @@
 
     </com.google.android.material.textfield.TextInputLayout> -->
 
+    <TextView
+        android:id="@+id/resultLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Total with tips:"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipPercentage" />
 
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        tools:text="00.00"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLength="7"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultLabel" />
 
     <Button
         android:id="@+id/limpar"
