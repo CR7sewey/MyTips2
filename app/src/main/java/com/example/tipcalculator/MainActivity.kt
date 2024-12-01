@@ -1,9 +1,13 @@
 package com.example.tipcalculator
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -68,9 +72,38 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val spinner: Spinner = binding.numberOfPeople
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.number_people,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears.
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner.
+            spinner.adapter = adapter
+        }
+
+
+        var numberOfPeopleSelected: Int = 0
+        binding.numberOfPeople.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                    // An item is selected. You can retrieve the selected item using
+                    numberOfPeopleSelected = parent.getItemAtPosition(pos).toString().toInt()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // Another interface callback.
+                }
+
+
+
+        }
+
 
         binding.calculateButton.setOnClickListener {
-            total = calculateValues(binding.accountInput, binding.numberOfPeopleInput, tip).toFloat()
+            total = calculateValues(binding.accountInput, numberOfPeopleSelected, tip).toFloat()
             println(total)
             if (total == 0.0f) {
                 binding.result.text = ""
@@ -83,8 +116,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.limpar.setOnClickListener {
             binding.accountInput.setText("")
-            binding.numberOfPeopleInput.text?.clear()
+
             binding.tipPercentage.clearCheck()
+            numberOfPeopleSelected = 0
             tip = ""
             total = 0.0f
             binding.result.text = ""
@@ -92,12 +126,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun calculateValues(accountInput: TextInputEditText, numberOfPeople: TextInputEditText, tip: String): String {
-        if (accountInput.text.isNullOrBlank() || numberOfPeople.text.isNullOrBlank() || tip.isEmpty()) {
+    private fun calculateValues(accountInput: TextInputEditText, numberOfPeopleSelected: Int, tip: String): String {
+        if (accountInput.text.isNullOrBlank() || tip.isEmpty()) {
             Snackbar.make(binding.accountInput,"Insert all the values.", Snackbar.LENGTH_LONG).show()
             return "0.0";
         }
-        return ((accountInput.text.toString().toDouble() / numberOfPeople.text.toString().toDouble())*(1+tip.toDouble()/100)).toString()
+        return ((accountInput.text.toString().toDouble() / numberOfPeopleSelected.toDouble())*(1+tip.toDouble()/100)).toString()
 
     }
 
