@@ -30,19 +30,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        /*val accountInput = findViewById<TextInputEditText>(R.id.accountInput);
-        val people = findViewById<TextInputEditText>(R.id.numberOfPeopleInput);
-        val radioGroup = findViewById<RadioGroup>(R.id.tipPercentage);
-        val tip_0 = findViewById<RadioButton>(R.id.tipPercentage0)
-        val tip_10 = findViewById<RadioButton>(R.id.tipPercentage10)
-        val tip_20 = findViewById<RadioButton>(R.id.tipPercentage20)
-        val tip_25 = findViewById<RadioButton>(R.id.tipPercentage25)
-        val tip_30 = findViewById<RadioButton>(R.id.tipPercentage30)*/
-
-
-       // val calculateButton = findViewById<Button>(R.id.calculateButton)
-        // val resetButton = findViewById<Button>(R.id.limpar)
-
         var tip: String = ""
         var total: Float = 0.0f
 
@@ -72,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val spinner: Spinner = binding.numberOfPeople
+        /*val spinner: Spinner = binding.numberOfPeople
         ArrayAdapter.createFromResource(
             this,
             R.array.number_people,
@@ -83,7 +70,6 @@ class MainActivity : AppCompatActivity() {
             // Apply the adapter to the spinner.
             spinner.adapter = adapter
         }
-
 
         var numberOfPeopleSelected: Int = 0
         binding.numberOfPeople.onItemSelectedListener =
@@ -96,14 +82,11 @@ class MainActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // Another interface callback.
                 }
-
-
-
-        }
+        }*/
 
 
         binding.calculateButton.setOnClickListener {
-            total = calculateValues(binding.accountInput, numberOfPeopleSelected, tip).toFloat()
+            total = calculateValues(binding.accountInput, binding.numberOfPeopleInput.text.toString(), tip).toFloat()
             println(total)
             if (total == 0.0f) {
                 //binding.result.text = ""
@@ -112,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 val externalIntent = Intent(this, ConfirmationActivity::class.java)
                 externalIntent.apply {
                     putExtra(ACCOUNT_VALUE, binding.accountInput.text.toString())
-                    putExtra(NUMBER_PEOPLE, numberOfPeopleSelected.toString())
+                    putExtra(NUMBER_PEOPLE, binding.numberOfPeopleInput.text.toString())
                     putExtra(PERCENTAGE_TIP, tip)
                     putExtra("result", total)
                 }
@@ -122,10 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.limpar.setOnClickListener {
-            binding.accountInput.setText("")
-
-            binding.tipPercentage.clearCheck()
-            numberOfPeopleSelected = 0
+            clean()
             tip = ""
             total = 0.0f
             //binding.result.text = ""
@@ -133,13 +113,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun calculateValues(accountInput: TextInputEditText, numberOfPeopleSelected: Int, tip: String): String {
-        if (accountInput.text.isNullOrBlank() || tip.isEmpty()) {
+    private fun calculateValues(accountInput: TextInputEditText, numberOfPeopleSelected: String, tip: String): String {
+        if (accountInput.text.isNullOrBlank() || numberOfPeopleSelected.isEmpty() || tip.isEmpty()) {
             Snackbar.make(binding.accountInput,"Insert all the values.", Snackbar.LENGTH_LONG).show()
             return "0.0";
         }
         return ((accountInput.text.toString().toDouble() / numberOfPeopleSelected.toDouble())*(1+tip.toDouble()/100)).toString()
 
+    }
+
+    private fun clean() {
+        binding.accountInput.setText("")
+
+        binding.tipPercentage.clearCheck()
+        //numberOfPeopleSelected = 0
+        binding.numberOfPeopleInput.setText("")
     }
 
 
