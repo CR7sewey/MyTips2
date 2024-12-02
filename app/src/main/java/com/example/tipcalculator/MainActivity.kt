@@ -1,21 +1,21 @@
 package com.example.tipcalculator
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Spinner
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.cursoradapter.widget.SimpleCursorAdapter.ViewBinder
 import com.example.tipcalculator.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+
+const val ACCOUNT_VALUE = "account_value"
+const val NUMBER_PEOPLE = "number_people"
+const val PERCENTAGE_TIP = "percentage_tip"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -106,10 +106,17 @@ class MainActivity : AppCompatActivity() {
             total = calculateValues(binding.accountInput, numberOfPeopleSelected, tip).toFloat()
             println(total)
             if (total == 0.0f) {
-                binding.result.text = ""
+                //binding.result.text = ""
             }
             else {
-                binding.result.text = "€${total}"
+                val externalIntent = Intent(this, ConfirmationActivity::class.java)
+                externalIntent.apply {
+                    putExtra(ACCOUNT_VALUE, binding.accountInput.text.toString())
+                    putExtra(NUMBER_PEOPLE, numberOfPeopleSelected.toString())
+                    putExtra(PERCENTAGE_TIP, tip)
+                    putExtra("result", total)
+                }
+                startActivity(externalIntent)
             }
 
         }
@@ -121,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             numberOfPeopleSelected = 0
             tip = ""
             total = 0.0f
-            binding.result.text = ""
+            //binding.result.text = ""
         }
 
     }
