@@ -30,10 +30,15 @@ class ConfirmationActivity : AppCompatActivity() {
         binding.account.text = "${accountValue} €"
         binding.numberOfPeople.text = numberPeople
         binding.tipPercentage.text = "${tipPercentage} %"
+        binding.total.text = "${result} €"
 
-        binding.limpar.setOnClickListener {
+        binding.calculateButton.setOnClickListener {
             val exInt = Intent(this, MainActivity::class.java)
             startActivity(exInt)
+        }
+
+        binding.limpar.setOnClickListener {
+            finish() // close current screen
         }
 
     }

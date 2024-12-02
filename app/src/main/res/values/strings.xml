@@ -3,6 +3,8 @@
     <string name="tips_calculator">Tips calculator</string>
     <string name="reset">Reset</string>
     <string name="calculate">Calculate</string>
+    <string name="summary">Summary</string>
+    <string name="fill_the_fields_below_to_calculate_your_account">Fill the fields below to calculate your account.</string>
     <string-array name="number_people">
         <item>1</item>
         <item>2</item>
