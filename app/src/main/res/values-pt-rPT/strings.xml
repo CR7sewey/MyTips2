@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculador Gorjeta</string>
+    <string name="tips_calculator">Gorjeta</string>
+    <string name="reset">Limpar</string>
+    <string name="calculate">Calcular</string>
+    <string name="summary">Resumo</string>
+    <string name="fill_the_fields_below_to_calculate_your_account">Preencher os campos abaixo para calcular a conta.</string>
+    <string name="accountLabel">Quanto é a conta?</string>
+    <string name="numberPeopleLabel">Número de Pessoas</string>
+    <string name="percentageLabel">Percentagem Gorjeta</string>
+</resources>

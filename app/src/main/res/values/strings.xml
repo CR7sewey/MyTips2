@@ -5,6 +5,10 @@
     <string name="calculate">Calculate</string>
     <string name="summary">Summary</string>
     <string name="fill_the_fields_below_to_calculate_your_account">Fill the fields below to calculate your account.</string>
+    <string name="accountLabel">How much is the account?</string>
+    <string name="numberPeopleLabel">Number of people</string>
+    <string name="percentageLabel">Tip percentage</string>
+
     <string-array name="number_people">
         <item>1</item>
         <item>2</item>
